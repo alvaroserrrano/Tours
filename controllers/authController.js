@@ -15,7 +15,8 @@ exports.signup = catchAsync(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm
+    passwordConfirm: req.body.passwordConfirm,
+    role: req.body.role
   });
 
   const token = signToken(newUser._id);
@@ -44,6 +45,7 @@ exports.login = catchAsync(async (req, res, next) => {
   });
 });
 
+//MIDDLEWARE FOR PROTECTED ROUTES
 exports.protect = catchAsync(async (req, res, next) => {
   //1)Get token and checking that it exists (headers)
   let token;
@@ -78,3 +80,32 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = freshUser;
   next();
 });
+
+//MIDDLEWARE FOR RESTRICTED PRIVILEGES
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    //roles['admin', 'lead-guide']
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError('You do not have permission to perform this action', 403)
+      );
+    }
+    next();
+  };
+};
+
+//User sends post request to inform that he/she forgot his/her password and receives an email with a token
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  //1)Get user based on posted email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return next(new AppError('No user was found with that email address', 404));
+  }
+  //2)Generate random reset token
+  const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
+
+  //3)Send randomly generated token to user
+});
+
+exports.resetPassword = (req, res, next) => {};
