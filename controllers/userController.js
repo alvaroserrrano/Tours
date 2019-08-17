@@ -53,11 +53,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
 exports.deleteMe = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user.id, { active: false });
-
-  res.status(204).json({
-    status: 'success',
-    data: null
-  });
+  res.status(204).json({ status: 'success', data: null });
 });
 
 exports.getUser = (req, res) => {
@@ -78,6 +74,7 @@ exports.updateUser = (req, res) => {
     message: 'This route is not yet defined!'
   });
 };
+//Don't delete account. Set account to inactive instead
 exports.deleteUser = (req, res) => {
   res.status(500).json({
     status: 'error',
