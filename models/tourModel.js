@@ -104,6 +104,7 @@ const tourSchema = new mongoose.Schema(
         day: Number
       }
     ],
+    //Reference to another model (no need to require the model); Then populate (middleware)
     guides: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
   },
   {
