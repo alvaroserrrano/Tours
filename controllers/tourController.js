@@ -1,17 +1,16 @@
 const Tour = require('./../models/tourModel');
 const APIFeatures = require('../utils/APIFeatures');
 const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
-//MIDDLEWARE
+const AppError = require('./../utils/appError');
+
 exports.aliasTopTours = (req, res, next) => {
-  req.query.limit = 5;
+  req.query.limit = '5';
   req.query.sort = '-ratingsAverage,price';
   req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
   next();
 };
 
 exports.getAllTours = catchAsync(async (req, res, next) => {
-  //EXECUTE QUERY
   const features = new APIFeatures(Tour.find(), req.query)
     .filter()
     .sort()
@@ -19,7 +18,7 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
     .paginate();
   const tours = await features.query;
 
-  //SEND RESPONSE
+  // SEND RESPONSE
   res.status(200).json({
     status: 'success',
     results: tours.length,
@@ -104,14 +103,13 @@ exports.getTourStats = catchAsync(async (req, res, next) => {
       }
     },
     {
-      $sort: {
-        avgPrice: 1
-      }
-    },
-    {
-      $match: { _id: { $ne: 'EASY' } }
+      $sort: { avgPrice: 1 }
     }
+    // {
+    //   $match: { _id: { $ne: 'EASY' } }
+    // }
   ]);
+
   res.status(200).json({
     status: 'success',
     data: {
@@ -121,7 +119,8 @@ exports.getTourStats = catchAsync(async (req, res, next) => {
 });
 
 exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
-  const year = req.params.year * 1;
+  const year = req.params.year * 1; // 2021
+
   const plan = await Tour.aggregate([
     {
       $unwind: '$startDates'
@@ -151,8 +150,10 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
     },
     {
       $sort: { numTourStarts: -1 }
+    },
+    {
+      $limit: 12
     }
-    // { $limit: 12 }
   ]);
 
   res.status(200).json({
