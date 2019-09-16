@@ -1082,7 +1082,7 @@ body {
   overflow: hidden;
   -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: #333842;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
   -webkit-backface-visibility: hidden;
@@ -1125,6 +1125,7 @@ body {
   width: 100%;
 }
 .card__details {
+  color: #fff;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-row-gap: 1.75rem;
@@ -1162,9 +1163,9 @@ body {
   fill: #55c57a;
 }
 .card__footer {
-  background-color: #f7f7f7;
+  background-color: #282c34;
   padding: 2.5rem 3rem;
-  border-top: 1px solid #f1f1f1;
+  border-top: 1px solid #282c34;
   font-size: 1.4rem;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -1173,10 +1174,11 @@ body {
   margin-top: auto;
 }
 .card__footer-value {
+  color: #00ff00;
   font-weight: 700;
 }
 .card__footer-text {
-  color: #999;
+  color: #00ff00;
 }
 .card__ratings {
   grid-row: 2 / 3;
