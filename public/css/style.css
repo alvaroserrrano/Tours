@@ -562,6 +562,7 @@ body {
   width: 32px;
   height: 40px;
   cursor: pointer;
+  font-color: #000c18;
 }
 
 .mapboxgl-popup {
@@ -1242,7 +1243,7 @@ body {
   display: block;
   font-family: inherit;
   font-size: 1.5rem;
-  color: inherit;
+  color: #000c18;
   padding: 1.25rem 1.75rem;
   border: none;
   width: 100%;
@@ -1328,4 +1329,7 @@ body {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
+}
+.popup {
+  color: #000c18;
 }
