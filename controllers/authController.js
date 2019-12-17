@@ -43,6 +43,10 @@ exports.signup = catchAsync(async (req, res, next) => {
     passwordConfirm: req.body.passwordConfirm
   });
 
+  if (newUser.password !== newUser.passwordConfirm) {
+    return next(new AppError('Passwords do not match!', 400));
+  }
+
   const url = `${req.protocol}://${req.get('host')}/me`;
   // console.log(url);
   await new Email(newUser, url).sendWelcome();

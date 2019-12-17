@@ -1275,6 +1275,7 @@ body {
 }
 
 .form__label {
+  color: #000c18;
   display: block;
   font-size: 1.6rem;
   font-weight: 700;
@@ -1332,4 +1333,7 @@ body {
 }
 .popup {
   color: #000c18;
+}
+#submit-btn {
+  margin-top: 20px;
 }

@@ -3,13 +3,10 @@ block content
     main.main
         .login-form
             h2.heading-secondary.ma-bt-lg Create a new account
-            form.form
+            form.signup-form
                 .form__group
-                    label.form__label(for='email') First name
-                    input#email.form__input(type='email', placeholder='First name', required)
-                .form__group
-                    label.form__label(for='email') Last Name
-                    input#email.form__input(type='email', placeholder='Last name', required)
+                    label.form__label(for='name') Name
+                    input#name.form__input(type='text', name='name', placeholder='First name', required)
                 .form__group
                     label.form__label(for='email') Email address
                     input#email.form__input(type='email', placeholder='you@example.com', required)
@@ -17,7 +14,7 @@ block content
                     label.form__label(for='password') Password
                     input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
                 .form__group.ma-bt-md
-                label.form__label(for='password') Confirm Password
-                input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    label.form__label(for='password') Confirm Password
+                    input#passwordConfirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
                 .form__group
-                    button.btn.btn--green Sign up
+                    button#submit-btn.btn.btn--green Sign up
