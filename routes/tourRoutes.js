@@ -19,6 +19,8 @@ router
   .get(
     authController.protect,
     authController.restrictTo('admin', 'lead-guide', 'guide'),
+    tourController.uploadTourImages,
+    tourController.resizeTourImages,
     tourController.getTourStats
   );
 
