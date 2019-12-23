@@ -14,7 +14,6 @@ export const signup = async (name, email, password, passwordConfirm, role) => {
         role
       }
     });
-    console.log(res.data);
     if (password !== passwordConfirm)
       showAlert('error', 'Passwords do not match');
 
