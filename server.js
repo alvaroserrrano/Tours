@@ -32,3 +32,11 @@ process.on('unhandledRejection', err => {
     process.exit(1);
   });
 });
+
+//HEROKU SIGTERM SIGNAL
+process.on('SIGTERM', () => {
+  console.log('SIGTERM SIGNAL received. Shutting down gracefully');
+  server.close(() => {
+    console.log('Process terminated');
+  });
+});
