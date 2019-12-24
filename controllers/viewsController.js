@@ -60,6 +60,15 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.alerts = (req, res, next) => {
+  const { alert } = req.query.alert;
+  if (alert === 'booking') {
+    res.locals.alert =
+      'Your booking was successful! Check your email for confirmation. If your booking is not displayed immediately, please come back a bit later';
+  }
+  next();
+};
+
 exports.updateUserData = catchAsync(async (req, res, next) => {
   const updatedUser = await User.findByIdAndUpdate(
     req.user.id,
