@@ -61,7 +61,7 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
 });
 
 exports.alerts = (req, res, next) => {
-  const { alert } = req.query.alert;
+  const { alert } = req.query;
   if (alert === 'booking') {
     res.locals.alert =
       'Your booking was successful! Check your email for confirmation. If your booking is not displayed immediately, please come back a bit later';
